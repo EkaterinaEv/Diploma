@@ -45,3 +45,8 @@
 7. Генерация отчетов по тестированию и их просмотр в браузере запускается командой в терминале:
 
    *./gradlew allureServe*
+
+
+* ### [План автоматизации тестирования](https://github.com/EkaterinaEv/Diploma/blob/main/docs/Plan.md#план-автоматизации-тестирования-вэб-сервиса-для-покупки-тура-с-оплатой-дебетовой-или-кредитной-картой)
+* ### [Отчёт о проведённом тестировании](https://github.com/EkaterinaEv/Diploma/blob/main/docs/Report.md)
+* ### [Отчёт о проведённой автоматизации](https://github.com/EkaterinaEv/Diploma/blob/main/docs/Summary.md)
