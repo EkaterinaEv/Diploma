@@ -40,7 +40,7 @@ public class PaymentPage {
         successNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
-    public void getDeclinedNotification() {
+    public void getErrorNotification() {
         errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
 
     }
