@@ -1,11 +1,14 @@
 package data;
 
 import lombok.SneakyThrows;
+import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import static java.sql.DriverManager.getConnection;
 
 
 public class DataBaseHelper {
@@ -15,7 +18,32 @@ public class DataBaseHelper {
     }
 
     public static Connection getConn() throws SQLException {
-        return DriverManager.getConnection(System.getProperty("db.url"), "app", "pass");
+        return getConnection(System.getProperty("db.url"), "app", "pass");
+    }
+
+
+    @SneakyThrows
+    public static String getStatusCreditRequest() {
+        var codesql = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
+        var conn = getConn();
+        var countStatement = conn.createStatement();
+        var resultSet = countStatement.executeQuery(codesql);
+        if (resultSet.next()) {
+            return resultSet.getString("status");
+        }
+        return null;
+    }
+
+    @SneakyThrows
+    public static String getStatusPaymentRequest() {
+        var codesql = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;";
+        var conn = getConn();
+        var countStatement = conn.createStatement();
+        var resultSet = countStatement.executeQuery(codesql);
+        if (resultSet.next()) {
+            return resultSet.getString("status");
+        }
+        return null;
     }
 
     @SneakyThrows
