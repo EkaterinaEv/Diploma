@@ -14,7 +14,7 @@ public class DataBaseHelper {
     }
 
     public static Connection getConn() throws SQLException {
-        return DriverManager.getConnection(System.getProperty("dbUrl"), "app", "pass");
+        return DriverManager.getConnection(System.getProperty("db.url"), "app", "pass");
     }
 
     @SneakyThrows

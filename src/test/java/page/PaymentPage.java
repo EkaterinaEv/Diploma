@@ -7,32 +7,27 @@ import data.DataHelper;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class PaymentPage {
 
     private final SelenideElement header = $(byText("Оплата по карте"));
-    private final SelenideElement cardNumber = $(byText("Номер карты"));
-    private final SelenideElement month = $(byText("Месяц"));
-    private final SelenideElement year = $(byText("Год"));
-    private final SelenideElement owner = $(byText("Владелец"));
-    private final SelenideElement cvc = $(byText("CVC/CVV"));
-    private final SelenideElement continueButton = $(byText("Продолжить"));
+    private final SelenideElement cardNumber = $("[placeholder='0000 0000 0000 0000']");
+    private final SelenideElement month = $("[placeholder='08']");
+    private final SelenideElement year = $("[placeholder='22']");
+    private final SelenideElement owner = $(byText("Владелец")).parent().$(".input__control");
+    private final SelenideElement cvc = $("[placeholder='999']");
     private final SelenideElement successNotification = $(".notification_status_ok");
     private final SelenideElement errorNotification = $(".notification_status_error");
+    private final SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
+
+    // нужны ли переменные такого типа?:
+    private final SelenideElement invalidFormat = $(byText("Неверный формат"));
 
 
     public PaymentPage() {
         header.shouldBe(visible);
-        cardNumber.shouldBe(visible);
-        month.shouldBe(visible);
-        year.shouldBe(visible);
-        owner.shouldBe(visible);
-        cvc.shouldBe(visible);
-        continueButton.shouldBe(visible);
-        successNotification.shouldBe(hidden);
-        errorNotification.shouldBe(hidden);
     }
 
 
