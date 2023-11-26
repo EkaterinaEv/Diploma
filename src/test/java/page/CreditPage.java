@@ -1,46 +1,47 @@
 package page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.hidden;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class CreditPage {
-    private final SelenideElement header = $(byText("Оплата по карте"));
-    private final SelenideElement cardNumber = $(byText("Номер карты"));
-    private final SelenideElement month = $(byText("Месяц"));
-    private final SelenideElement year = $(byText("Год"));
-    private final SelenideElement owner = $(byText("Владелец"));
-    private final SelenideElement cvc = $(byText("CVC/CVV"));
-    private final SelenideElement continueButton = $(byText("Продолжить"));
+    private final SelenideElement header = $(byText("Кредит по данным карты"));
+    private final SelenideElement cardNumber = $("[placeholder='0000 0000 0000 0000']");
+    private final SelenideElement month = $("[placeholder='08']");
+    private final SelenideElement year = $("[placeholder='22']");
+    private final SelenideElement owner = $(byText("Владелец")).parent().$(".input__control");
+    private final SelenideElement cvc = $("[placeholder='999']");
     private final SelenideElement successNotification = $(".notification_status_ok");
     private final SelenideElement errorNotification = $(".notification_status_error");
+    private final SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
+
+    // нужны ли переменные такого типа?:
+    private final SelenideElement invalidValueFormat = $(byText("Неверный формат"));
+
+    private final SelenideElement invalidOwner = $(byText("Поле обязательно для заполнения"));
 
     public CreditPage() {
         header.shouldBe(visible);
-        cardNumber.shouldBe(visible);
-        month.shouldBe(visible);
-        year.shouldBe(visible);
-        owner.shouldBe(visible);
-        cvc.shouldBe(visible);
-        continueButton.shouldBe(visible);
-        successNotification.shouldBe(hidden);
-        errorNotification.shouldBe(hidden);
     }
 
     public void getSuccessNotification() {
-        successNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        successNotification.shouldBe(visible, Duration.ofSeconds(15));
+        successNotification.$("[class=notification__title]").should(text("Успешно"));
+        successNotification.$("[class=notification__content]").should(text("Операция одобрена Банком."));
+        successNotification.shouldBe(hidden);
     }
 
     public void getErrorNotification() {
-        errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
-
+        errorNotification.shouldBe(visible, Duration.ofSeconds(15));
+        errorNotification.$("[class=notification__title]").should(text("Ошибка"));
+        errorNotification.$("[class=notification__content]").should(text("Ошибка! Банк отказал в проведении операции."));
+        errorNotification.shouldBe(hidden);
     }
 
     public void inputData(DataHelper.CardInfo card) {

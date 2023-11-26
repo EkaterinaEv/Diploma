@@ -1,10 +1,10 @@
 package page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
 
 import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -23,7 +23,9 @@ public class PaymentPage {
     private final SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
 
     // нужны ли переменные такого типа?:
-    private final SelenideElement invalidFormat = $(byText("Неверный формат"));
+    private final SelenideElement invalidValueFormat = $(byText("Неверный формат"));
+
+    private final SelenideElement invalidOwner = $(byText("Поле обязательно для заполнения"));
 
 
     public PaymentPage() {
@@ -32,12 +34,17 @@ public class PaymentPage {
 
 
     public void getSuccessNotification() {
-        successNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        successNotification.shouldBe(visible, Duration.ofSeconds(15));
+        successNotification.$("[class=notification__title]").should(text("Успешно"));
+        successNotification.$("[class=notification__content]").should(text("Операция одобрена Банком."));
+        successNotification.shouldBe(hidden);
     }
 
     public void getErrorNotification() {
-        errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
-
+        errorNotification.shouldBe(visible, Duration.ofSeconds(15));
+        errorNotification.$("[class=notification__title]").should(text("Ошибка"));
+        errorNotification.$("[class=notification__content]").should(text("Ошибка! Банк отказал в проведении операции."));
+        errorNotification.shouldBe(hidden);
     }
 
     public void inputData(DataHelper.CardInfo card) {
