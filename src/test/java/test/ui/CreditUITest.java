@@ -32,7 +32,7 @@ public class CreditUITest {
         var cardInfo = DataHelper.getValidDataWithApprovedCard();
         creditPage.inputData(cardInfo);
         creditPage.getSuccessNotification();
-        val actual = DataBaseHelper.getStatusCreditRequest();
+        var actual = DataBaseHelper.getStatusCreditRequest();
         assertEquals("APPROVED", actual);
     }
 
@@ -43,7 +43,7 @@ public class CreditUITest {
         var cardInfo = DataHelper.getValidDataWithDeclinedCard();
         creditPage.inputData(cardInfo);
         creditPage.getErrorNotification();
-        val actual = DataBaseHelper.getStatusCreditRequest();
+        var actual = DataBaseHelper.getStatusCreditRequest();
         assertEquals("DECLINED", actual);
     }
 
