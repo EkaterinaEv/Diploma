@@ -47,6 +47,20 @@ public class DataBaseHelper {
     }
 
     @SneakyThrows
+    public static int getCountOrderEntity() {
+        var codesql = "SELECT COUNT(*) AS total FROM order_entity;";
+        var conn = getConn();
+        var countStatement = conn.createStatement();
+        var resultSet = countStatement.executeQuery(codesql);
+        if (resultSet.next()) {
+            return resultSet.getInt("total");
+        }
+        return 0;
+    }
+
+
+
+    @SneakyThrows
     public static void cleanDataBase() {
         var connection = getConn();
         runner.execute(connection, "DELETE FROM credit_request_entity");
