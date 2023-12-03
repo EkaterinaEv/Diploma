@@ -1,5 +1,6 @@
 package page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import data.DataHelper;
 
@@ -20,8 +21,6 @@ public class CreditPage {
     private final SelenideElement successNotification = $(".notification_status_ok");
     private final SelenideElement errorNotification = $(".notification_status_error");
     private final SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
-
-    // нужны ли переменные такого типа?:
     private final SelenideElement invalidValueFormat = $(byText("Неверный формат"));
 
     private final SelenideElement invalidOwner = $(byText("Поле обязательно для заполнения"));
@@ -51,6 +50,18 @@ public class CreditPage {
         owner.setValue(card.getOwner());
         cvc.setValue(card.getCvc());
         continueButton.click();
+    }
+
+    public void checkingEmptyField() {
+        invalidOwner.shouldBe(Condition.visible);
+    }
+
+    public void checkingWrongFormat() {
+        invalidValueFormat.shouldBe(Condition.visible);
+    }
+
+    public void checkingDeclinedNotification() {
+        errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
 }
