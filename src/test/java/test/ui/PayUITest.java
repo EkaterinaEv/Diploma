@@ -125,7 +125,7 @@ public class PayUITest {
         var paymentPage = page.paymentButtonClick();
         var cardInfo = DataHelper.getCardInfoWithMonthWithTwoZero();
         paymentPage.inputData(cardInfo);
-        paymentPage.checkingWrongFormat();
+        paymentPage.checkingWrongDateFormat();
     }
 
     //Cо значением 13 в поле Месяц getCardInfoWith13Month
@@ -135,7 +135,7 @@ public class PayUITest {
         var paymentPage = page.paymentButtonClick();
         var cardInfo = DataHelper.getCardInfoWith13Month();
         paymentPage.inputData(cardInfo);
-        paymentPage.checkingWrongFormat();
+        paymentPage.checkingWrongDateFormat();
     }
 
     //Cо значением, состоящим из одной цифры в поле Месяц
@@ -175,7 +175,7 @@ public class PayUITest {
         var paymentPage = page.paymentButtonClick();
         var cardInfo = DataHelper.getCardInfoWithLastYear();
         paymentPage.inputData(cardInfo);
-        paymentPage.checkingWrongFormat();
+        paymentPage.checkingCardEnded();
     }
 
     //Со спецсимволами в поле Год

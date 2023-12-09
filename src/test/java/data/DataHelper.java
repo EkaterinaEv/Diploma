@@ -254,7 +254,7 @@ public class DataHelper {
                 LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
                 LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
                 fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
-                fakerEn.numerify("###"));
+                fakerEn.numerify("*&*"));
     }
 
     //Со спецсимволами в поле CVC/CVV
@@ -266,3 +266,4 @@ public class DataHelper {
                 "CVC");
     }
 }
+

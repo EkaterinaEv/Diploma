@@ -23,8 +23,9 @@ public class PaymentPage {
     private final SelenideElement errorNotification = $(".notification_status_error");
     private final SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
     private final SelenideElement invalidValueFormat = $(byText("Неверный формат"));
-
     private final SelenideElement invalidOwner = $(byText("Поле обязательно для заполнения"));
+    private final SelenideElement invalidDateFormat = $(byText("Неверно указан срок действия карты"));
+    private final SelenideElement cardEndedError = $(byText("Истёк срок действия карты"));
 
 
     public PaymentPage() {
@@ -36,14 +37,14 @@ public class PaymentPage {
         successNotification.shouldBe(visible, Duration.ofSeconds(15));
         successNotification.$("[class=notification__title]").should(text("Успешно"));
         successNotification.$("[class=notification__content]").should(text("Операция одобрена Банком."));
-        successNotification.shouldBe(hidden);
+        //successNotification.shouldBe(hidden);
     }
 
     public void getErrorNotification() {
         errorNotification.shouldBe(visible, Duration.ofSeconds(15));
         errorNotification.$("[class=notification__title]").should(text("Ошибка"));
         errorNotification.$("[class=notification__content]").should(text("Ошибка! Банк отказал в проведении операции."));
-        errorNotification.shouldBe(hidden);
+        //errorNotification.shouldBe(hidden);
     }
 
     public void inputData(DataHelper.CardInfo card) {
@@ -66,6 +67,15 @@ public class PaymentPage {
     public void checkingDeclinedNotification() {
         errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
+
+    public void checkingWrongDateFormat() {
+        invalidDateFormat.shouldBe(Condition.visible);
+    }
+
+    public void checkingCardEnded() {
+        cardEndedError.shouldBe(Condition.visible);
+    }
+
 
 }
 

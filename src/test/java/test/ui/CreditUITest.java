@@ -124,7 +124,7 @@ public class CreditUITest {
         var creditPage = page.creditButtonClick();
         var cardInfo = DataHelper.getCardInfoWithMonthWithTwoZero();
         creditPage.inputData(cardInfo);
-        creditPage.checkingWrongFormat();
+        creditPage.checkingWrongDateFormat();
     }
 
     //Cо значением 13 в поле Месяц getCardInfoWith13Month
@@ -134,7 +134,7 @@ public class CreditUITest {
         var creditPage = page.creditButtonClick();
         var cardInfo = DataHelper.getCardInfoWith13Month();
         creditPage.inputData(cardInfo);
-        creditPage.checkingWrongFormat();
+        creditPage.checkingWrongDateFormat();
     }
 
     //Cо значением, состоящим из одной цифры в поле Месяц
@@ -174,7 +174,7 @@ public class CreditUITest {
         var creditPage = page.creditButtonClick();
         var cardInfo = DataHelper.getCardInfoWithLastYear();
         creditPage.inputData(cardInfo);
-        creditPage.checkingWrongFormat();
+        creditPage.checkingCardEnded();
     }
 
     //Со спецсимволами в поле Год
