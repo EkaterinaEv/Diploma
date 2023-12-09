@@ -20,10 +20,10 @@ public class DataHelper {
 
     @Value
     public static class CardInfo {
-        String cardNumber;
+        String number;
         String month;
         String year;
-        String owner;
+        String holder;
         String cvc;
     }
 

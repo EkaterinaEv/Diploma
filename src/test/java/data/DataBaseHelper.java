@@ -56,7 +56,6 @@ public class DataBaseHelper {
     }
 
 
-
     @SneakyThrows
     public static void cleanDataBase() {
         var connection = getConn();

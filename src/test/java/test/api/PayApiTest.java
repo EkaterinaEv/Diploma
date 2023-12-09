@@ -9,9 +9,11 @@ import io.qameta.allure.selenide.AllureSelenide;
 import lombok.Data;
 import lombok.val;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static data.DataBaseHelper.cleanDataBase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PayApiTest {
@@ -26,6 +28,11 @@ public class PayApiTest {
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
+    }
+
+    @AfterEach
+    public void teardrop() {
+        cleanDataBase();
     }
 
 

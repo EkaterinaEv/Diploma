@@ -7,11 +7,9 @@ import data.DataBaseHelper;
 import data.DataHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import static data.DataBaseHelper.cleanDataBase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditApiTest {
@@ -27,6 +25,11 @@ public class CreditApiTest {
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
+    }
+
+    @AfterEach
+    public void teardrop() {
+        cleanDataBase();
     }
 
     //Отправка POST-запроса с валидными данными и номером карты со статусом "APPROVED".
