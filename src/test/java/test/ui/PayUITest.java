@@ -241,7 +241,7 @@ public class PayUITest {
     //С пустым полем CVC/CVV
     @Test
     @DisplayName("Card with empty CVC")
-    void shouldFailValidationCardWithEmptyCVC () {
+    void shouldFailValidationCardWithEmptyCVC() {
         var paymentPage = page.paymentButtonClick();
         var cardInfo = DataHelper.getCardInfoWithEmptyCVC();
         paymentPage.inputData(cardInfo);

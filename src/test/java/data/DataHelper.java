@@ -18,6 +18,20 @@ public class DataHelper {
         return LocalDate.now().minusYears(minusOneYear).format(DateTimeFormatter.ofPattern("yy"));
     }
 
+    //ДОРАБОТКА
+    public static String generateHolderName() {
+        return fakerEn.name().lastName() + " " + fakerEn.name().firstName();
+    }
+
+    public static String generateMonth(int month) {
+        return LocalDate.now().plusMonths(month).format(DateTimeFormatter.ofPattern("MM"));
+    }
+
+    public static String generateYear(int year) {
+        return LocalDate.now().plusYears(year).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+
     @Value
     public static class CardInfo {
         String number;
@@ -38,17 +52,17 @@ public class DataHelper {
 
     public static CardInfo getValidDataWithApprovedCard() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     public static CardInfo getValidDataWithDeclinedCard() {
         return new CardInfo(getDeclinedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -67,45 +81,45 @@ public class DataHelper {
     //С пустым полем Номер карты
     public static CardInfo getCardInfoWithEmptyNumber() {
         return new CardInfo(null,
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Картой с невалидным номером длиной 16 цифр
     public static CardInfo getCardInfoWithRandomNumber() {
         return new CardInfo(fakerEn.numerify("#### #### #### ####"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Картой с номером длиной 17 цифр
     public static CardInfo getCardInfoWith17() {
         return new CardInfo(fakerEn.numerify("#### #### #### #### #"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Картой с номером длиной 15 цифр
     public static CardInfo getCardInfoWith15() {
         return new CardInfo(fakerEn.numerify("#### #### #### ###"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Картой с номером, состоящим из спецсимволов
     public static CardInfo getCardInfoWithSpecialCharacters() {
         return new CardInfo(fakerEn.numerify("@#$% !&*( ^&*( )(*&"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -114,8 +128,8 @@ public class DataHelper {
     public static CardInfo getCardInfoWithNullMonth() {
         return new CardInfo(getApprovedCardNumber(),
                 null,
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -123,8 +137,8 @@ public class DataHelper {
     public static CardInfo getCardInfoWithMonthWithTwoZero() {
         return new CardInfo(getApprovedCardNumber(),
                 LocalDate.now().format(DateTimeFormatter.ofPattern("00")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -132,8 +146,8 @@ public class DataHelper {
     public static CardInfo getCardInfoWith13Month() {
         return new CardInfo(getApprovedCardNumber(),
                 "13",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -141,8 +155,8 @@ public class DataHelper {
     public static CardInfo getCardInfoWithMonthWith1Number() {
         return new CardInfo(getApprovedCardNumber(),
                 fakerEn.numerify("#"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -150,44 +164,44 @@ public class DataHelper {
     public static CardInfo getCardInfoWithMonthWithSpecialCharacters() {
         return new CardInfo(getApprovedCardNumber(),
                 fakerEn.numerify("&$"),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //С пустым полем Год
     public static CardInfo getCardInfoWithNullYear() {
         return new CardInfo(getDeclinedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
+                generateMonth(0),
                 null,
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Со значением в поле Год, ранее текущего года
     public static CardInfo getCardInfoWithLastYear() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
+                generateMonth(0),
                 getLastYear(1),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //Со спецсимволами в поле Год
     public static CardInfo getCardInfoWithSpecialCharactersYear() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
+                generateMonth(0),
                 fakerEn.numerify("&$"),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
     //С одной цифрой в поле Год
     public static CardInfo getCardInfoWith1NumberYear() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
+                generateMonth(0),
                 fakerEn.numerify("#"),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateHolderName(),
                 fakerEn.numerify("###"));
     }
 
@@ -195,8 +209,8 @@ public class DataHelper {
     //С пустым полем Владелец
     public static CardInfo getCardInfoWithNullOwner() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
+                generateMonth(0),
+                generateYear(0),
                 null,
                 fakerEn.numerify("###"));
     }
@@ -205,8 +219,8 @@ public class DataHelper {
     //С цифрами в поле Владелец
     public static CardInfo getCardInfoWithOwnerWithNumbers() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
+                generateMonth(0),
+                generateYear(0),
                 fakerEn.numerify("####### ######"),
                 fakerEn.numerify("###"));
     }
@@ -214,8 +228,8 @@ public class DataHelper {
     //Со спецсимволами в поле Владелец
     public static CardInfo getCardInfoWithOwnerSpecialCharacters() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
+                generateMonth(0),
+                generateYear(0),
                 ")(*&^%$#@!@",
                 fakerEn.numerify("###"));
     }
@@ -223,8 +237,8 @@ public class DataHelper {
     //Со значением в поле Владелец, набранным кириллицей
     public static CardInfo getCardInfoWithOwnerCyrillic() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
+                generateMonth(0),
+                generateYear(0),
                 fakerRu.name().firstName() + " " + fakerRu.name().lastName(),
                 fakerEn.numerify("###"));
     }
@@ -232,9 +246,9 @@ public class DataHelper {
     //С пустым полем CVC/CVV
     public static CardInfo getCardInfoWithEmptyCVC() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 null);
     }
 
@@ -242,27 +256,27 @@ public class DataHelper {
     //С двумя цифрами в поле CVC/CVV
     public static CardInfo getCardInfoWithCVC2Numbers() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("##"));
     }
 
     //С буквами в поле CVC/CVV
     public static CardInfo getCardInfoWithCVCSpecialCharacters() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 fakerEn.numerify("*&*"));
     }
 
     //Со спецсимволами в поле CVC/CVV
     public static CardInfo getCardInfoWithCVCLetter() {
         return new CardInfo(getApprovedCardNumber(),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("MM")),
-                LocalDate.now().format(DateTimeFormatter.ofPattern("yy")),
-                fakerEn.name().firstName() + " " + fakerEn.name().lastName(),
+                generateMonth(0),
+                generateYear(0),
+                generateHolderName(),
                 "CVC");
     }
 }

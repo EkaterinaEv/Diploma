@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import page.DashboardPage;
+
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -240,7 +241,7 @@ public class CreditUITest {
     //С пустым полем CVC/CVV
     @Test
     @DisplayName("Card with empty CVC")
-    void shouldFailValidationCardWithEmptyCVC () {
+    void shouldFailValidationCardWithEmptyCVC() {
         var creditPage = page.creditButtonClick();
         var cardInfo = DataHelper.getCardInfoWithEmptyCVC();
         creditPage.inputData(cardInfo);
