@@ -46,7 +46,7 @@
 
 9. Запустить приложение с БД PostgresSQL из терминала командой:
    
-*java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app"-jar aqa-shop.jar*
+*java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar aqa-shop.jar*
 
 10. Запустить тесты с БД PostgresSQL из терминала командой:
     

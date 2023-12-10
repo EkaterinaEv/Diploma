@@ -64,7 +64,7 @@ public class CreditUITest {
         var creditPage = page.creditButtonClick();
         var cardInfo = DataHelper.getCardInfoWithRandomNumber();
         creditPage.inputData(cardInfo);
-        creditPage.checkingDeclinedNotification();
+        creditPage.getErrorNotification();
     }
 
     //С пустым полем Номер карты

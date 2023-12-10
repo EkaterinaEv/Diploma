@@ -64,10 +64,6 @@ public class PaymentPage {
         invalidValueFormat.shouldBe(Condition.visible);
     }
 
-    public void checkingDeclinedNotification() {
-        errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(15));
-    }
-
     public void checkingWrongDateFormat() {
         invalidDateFormat.shouldBe(Condition.visible);
     }

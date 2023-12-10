@@ -65,7 +65,7 @@ public class PayUITest {
         var paymentPage = page.paymentButtonClick();
         var cardInfo = DataHelper.getCardInfoWithRandomNumber();
         paymentPage.inputData(cardInfo);
-        paymentPage.checkingDeclinedNotification();
+        paymentPage.getErrorNotification();
     }
 
     //С пустым полем Номер карты

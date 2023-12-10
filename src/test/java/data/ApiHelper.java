@@ -17,8 +17,8 @@ public class ApiHelper {
             .log(LogDetail.ALL)
             .build();
 
-    public static ValidatableResponse sendRequest(String body, int statusCode, String endpoint) {
-        return given()
+    public static void sendRequest(String body, int statusCode, String endpoint) {
+        given()
                 .spec(requestSpec)
                 .body(body)
                 .when()
