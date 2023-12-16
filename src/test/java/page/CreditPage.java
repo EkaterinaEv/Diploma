@@ -35,14 +35,12 @@ public class CreditPage {
         successNotification.shouldBe(visible, Duration.ofSeconds(15));
         successNotification.$("[class=notification__title]").should(text("Успешно"));
         successNotification.$("[class=notification__content]").should(text("Операция одобрена Банком."));
-        //successNotification.shouldBe(hidden);
     }
 
     public void getErrorNotification() {
         errorNotification.shouldBe(visible, Duration.ofSeconds(15));
         errorNotification.$("[class=notification__title]").should(text("Ошибка"));
         errorNotification.$("[class=notification__content]").should(text("Ошибка! Банк отказал в проведении операции."));
-        //errorNotification.shouldBe(hidden);
     }
 
     public void inputData(DataHelper.CardInfo card) {
