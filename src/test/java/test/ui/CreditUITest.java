@@ -228,7 +228,7 @@ public class CreditUITest {
         creditPage.checkingWrongFormat();
     }
 
-    //Со значением в поле Владелец, набранным кириллицей getCardInfoWithOwnerCyrillic
+    //Со значением в поле Владелец, набранным кириллицей
     @Test
     @DisplayName("Card with owner with name with cyrillic")
     void shouldFailValidationCardWithNameWithCyrillic() {
